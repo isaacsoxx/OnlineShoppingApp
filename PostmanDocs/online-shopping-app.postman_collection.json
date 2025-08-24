@@ -1,0 +1,185 @@
+{
+	"info": {
+		"_postman_id": "ef3a0e92-4848-4dba-ab99-d3dedbbf1bb2",
+		"name": "online-shopping-app",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "10708722"
+	},
+	"item": [
+		{
+			"name": "catalog-api",
+			"item": [
+				{
+					"name": "create-product",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Glasses\",\n  \"category\": [\"summer\", \"luxury\"],\n  \"description\": \"Golden sunshades\",\n  \"imageFile\": \"linktoproduct\",\n  \"price\": 150\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{catalog-api}}/products",
+							"host": [
+								"{{catalog-api}}"
+							],
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update-product",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Glasses\",\n  \"category\": [\"summer\", \"luxury\"],\n  \"description\": \"Golden sunshades\",\n  \"imageFile\": \"linktoproduct\",\n  \"price\": 150\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{catalog-api}}/products",
+							"host": [
+								"{{catalog-api}}"
+							],
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-products",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{catalog-api}}/products",
+							"host": [
+								"{{catalog-api}}"
+							],
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-product-by-id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{catalog-api}}/products/0198ce9e-7eaa-492a-8976-6b2bac85928c",
+							"host": [
+								"{{catalog-api}}"
+							],
+							"path": [
+								"products",
+								"0198ce9e-7eaa-492a-8976-6b2bac85928c"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-products-by-category",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{catalog-api}}/products/category/summer",
+							"host": [
+								"{{catalog-api}}"
+							],
+							"path": [
+								"products",
+								"category",
+								"summer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete-product",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{catalog-api}}/products/",
+							"host": [
+								"{{catalog-api}}"
+							],
+							"path": [
+								"products",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ordering-api",
+			"item": []
+		},
+		{
+			"name": "basket-api",
+			"item": []
+		},
+		{
+			"name": "discount-api",
+			"item": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

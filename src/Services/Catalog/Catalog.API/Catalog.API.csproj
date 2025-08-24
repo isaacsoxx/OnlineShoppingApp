@@ -7,17 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Products/GetProductByCategory/" />
-    <Folder Include="Products/GetProductById/" />
-    <Folder Include="Products/GetProducts/" />
-    <Folder Include="Products/UpdateProduct/" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="../../../BuildingBlocks/BuildingBlocks/BuildingBlocks.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Carter" Version="8.2.1" />
+    <PackageReference Include="Marten" Version="8.8.2" />
   </ItemGroup>
 </Project>

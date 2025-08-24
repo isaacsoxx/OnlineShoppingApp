@@ -1,6 +1,3 @@
-using BuildingBlocks.CQRS;
-using Catalog.API.Models;
-
 namespace Catalog.API.Products.CreateProduct;
 
 /// <summary>
@@ -33,7 +30,8 @@ public record CreateProductResult(Guid Id);
 /// <summary>
 /// Defines handler class from any incoming `CreateProductCommand` request type.
 /// </summary>
-internal class CreateProductCommandHandler : ICommandHandler<CreateProductCommand, CreateProductResult>
+/// <param name="session">Abstraction for database operation handler.</param>
+internal class CreateProductCommandHandler(IDocumentSession session) : ICommandHandler<CreateProductCommand, CreateProductResult>
 {
   /// <summary>
   /// Handles business logic to create a product.
@@ -55,8 +53,10 @@ internal class CreateProductCommandHandler : ICommandHandler<CreateProductComman
     };
 
     /* Second, save the object into the database. */
+    session.Store(product);
+    await session.SaveChangesAsync(cancellationToken);
 
     /* Third, return the result of the operation. <CreateProductResult> */
-    return new CreateProductResult(Guid.NewGuid());
+    return new CreateProductResult(product.Id);
   }
 }

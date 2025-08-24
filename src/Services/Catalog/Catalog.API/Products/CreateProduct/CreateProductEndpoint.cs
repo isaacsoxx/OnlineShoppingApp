@@ -41,16 +41,16 @@ public class CreateProductEndpoint : ICarterModule
     /// <returns></returns>
     app.MapPost("/products", async (CreateProductRequest request, ISender sender) =>
     {
-      // First, adapt the request to the command that will trigger the operation.
+      // First, convert the request to a command.
       var command = request.Adapt<CreateProductCommand>();
 
       // Second, send the command to trigger the handler containing the business logic.
       var result = await sender.Send(command);
 
-      // Third, adapt the result response from the handler so it can be sent back to the client.
+      // Third, convert the result from the handler to a response that can be sent back to the client.
       var response = result.Adapt<CreateProductResponse>();
 
-      // Fourth, return the result with specific status code for clarity and any relevant details back to the client.
+      // Fourth, return the response with specific status code for clarity and any relevant details back to the client.
       return Results.Created($"/products/{response.Id}", response);
     })
     .WithName("CreateProduct")
