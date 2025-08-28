@@ -28,6 +28,20 @@ public record CreateProductCommand
 public record CreateProductResult(Guid Id);
 
 /// <summary>
+/// Defines validation rules that will be applied to any incoming command type <CreateProductCommand>
+/// </summary>
+public class CreateProductCommandValidator : AbstractValidator<CreateProductCommand>
+{
+  public CreateProductCommandValidator()
+  {
+    RuleFor(command => command.Name).NotEmpty().WithMessage("Name is required.");
+    RuleFor(command => command.Category).NotEmpty().WithMessage("Category is required.");
+    RuleFor(command => command.ImageFile).NotEmpty().WithMessage("ImageFile is required.");
+    RuleFor(command => command.Price).GreaterThan(0).WithMessage("Price must be greater than zero.");
+  }
+}
+
+/// <summary>
 /// Defines handler class from any incoming `CreateProductCommand` request type.
 /// </summary>
 /// <param name="session">Abstraction for database operation handler.</param>
@@ -41,7 +55,6 @@ internal class CreateProductCommandHandler(IDocumentSession session) : ICommandH
   /// <returns></returns>
   public async Task<CreateProductResult> Handle(CreateProductCommand command, CancellationToken cancellationToken)
   {
-
     /* First, create the product entity from command object. */
     var product = new Product
     {
