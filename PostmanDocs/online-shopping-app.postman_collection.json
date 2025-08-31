@@ -19,7 +19,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"name\": \"Glasses\",\n  \"category\": [\"summer\", \"luxury\"],\n  \"description\": \"Golden sunshades\",\n  \"imageFile\": \"linktoproduct\",\n  \"price\": 150\n}",
+							"raw": "    {\n      \"name\": \"Lenovo IdeaPad 9\",\n      \"category\": [\n        \"Laptop\"\n      ],\n      \"description\": \"New laptop for company use.\",\n      \"imageFile\": \"product-8.png\",\n      \"price\": 800\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -48,7 +48,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"name\": \"Glasses\",\n  \"category\": [\"summer\", \"luxury\"],\n  \"description\": \"Golden sunshades\",\n  \"imageFile\": \"linktoproduct\",\n  \"price\": 150\n}",
+							"raw": "{\n      \"id\": \"0198f6fe-ee13-4963-9b7c-304f0056559f\",\n      \"name\": \"Lenovo IdeaPad 9\",\n      \"category\": [\n        \"Laptop\", \"Portable device\"\n      ],\n      \"description\": \"New laptop for company use.\",\n      \"imageFile\": \"product-8.png\",\n      \"price\": 800\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -68,6 +68,27 @@
 					"response": []
 				},
 				{
+					"name": "delete-product",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{catalog-api}}/products/0198f6fe-ee13-4963-9b7c-304f0056559f",
+							"host": [
+								"{{catalog-api}}"
+							],
+							"path": [
+								"products",
+								"0198f6fe-ee13-4963-9b7c-304f0056559f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "get-products",
 					"request": {
 						"auth": {
@@ -76,12 +97,22 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{catalog-api}}/products",
+							"raw": "{{catalog-api}}/products?pageNumber=2&pageSize=5",
 							"host": [
 								"{{catalog-api}}"
 							],
 							"path": [
 								"products"
+							],
+							"query": [
+								{
+									"key": "pageNumber",
+									"value": "2"
+								},
+								{
+									"key": "pageSize",
+									"value": "5"
+								}
 							]
 						}
 					},
@@ -93,13 +124,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{catalog-api}}/products/0198ce9e-7eaa-492a-8976-6b2bac85928c",
+							"raw": "{{catalog-api}}/products/0198f6fe-ee13-4963-9b7c-304f0056559f",
 							"host": [
 								"{{catalog-api}}"
 							],
 							"path": [
 								"products",
-								"0198ce9e-7eaa-492a-8976-6b2bac85928c"
+								"0198f6fe-ee13-4963-9b7c-304f0056559f"
 							]
 						}
 					},
@@ -125,21 +156,17 @@
 					"response": []
 				},
 				{
-					"name": "delete-product",
+					"name": "Health",
 					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "DELETE",
+						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{catalog-api}}/products/",
+							"raw": "{{catalog-api}}/health",
 							"host": [
 								"{{catalog-api}}"
 							],
 							"path": [
-								"products",
-								""
+								"health"
 							]
 						}
 					},
@@ -153,7 +180,87 @@
 		},
 		{
 			"name": "basket-api",
-			"item": []
+			"item": [
+				{
+					"name": "store-basket",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"Cart\": {\n    \"UserName\": \"farr\",\n    \"Items\": [\n      {\n        \"Quantity\": 2,\n        \"Color\": \"Red\",\n        \"Price\": 500,\n        \"ProductId\": \"6ec1297b-ec0a-4aa1-be25-6726e3b51a27\",\n        \"ProductName\": \"Xiaomi Mi 9\"\n      },\n      {\n        \"Quantity\": 4,\n        \"Color\": \"Gray\",\n        \"Price\": 1000,\n        \"ProductId\": \"b786103d-c621-4f5a-b498-23452610f88c\",\n        \"ProductName\": \"HTC U11+ Plus\"\n      }\n    ]\n  }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{basket-api}}/basket",
+							"host": [
+								"{{basket-api}}"
+							],
+							"path": [
+								"basket"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete-basket",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{basket-api}}/basket/farr",
+							"host": [
+								"{{basket-api}}"
+							],
+							"path": [
+								"basket",
+								"farr"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-basket",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{basket-api}}/basket/farr",
+							"host": [
+								"{{basket-api}}"
+							],
+							"path": [
+								"basket",
+								"farr"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "health",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{basket-api}}/health",
+							"host": [
+								"{{basket-api}}"
+							],
+							"path": [
+								"health"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		},
 		{
 			"name": "discount-api",
