@@ -33,7 +33,7 @@ where TResponse : notnull
     if (timeTaken.Seconds > 3) logger.LogWarning("[PERFORMANCE] The request {Request} took {TimeTaken} seconds.", typeof(TRequest).Name, timeTaken.Seconds);
 
     /* Log details of the response once it has finished execution. */
-    logger.LogInformation("[END] Handled {Request} with {Response}", typeof(TRequest).Name, typeof(TResponse).Name);
+    logger.LogInformation("[END] Handled {Request} with {Response} in {TimeTaken} milliseconds", typeof(TRequest).Name, typeof(TResponse).Name, timeTaken.Milliseconds);
 
     /* Return stored response. */
     return response;
