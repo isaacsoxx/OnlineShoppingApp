@@ -1,12 +1,55 @@
 {
   "configurations": [
     {
-      "name": "Containers: .NET Launch",
+      "name": "Containers: catalog-api.NET Launch",
+      "type": "docker",
+      "request": "launch",
+      "preLaunchTask": "docker-run: debug",
+      "netCore": {
+        "appProject": "${workspaceFolder}/src/Services/Catalog/Catalog.API/Catalog.API.csproj"
+      }
+    },
+    {
+      "name": "Containers: basket-api.NET Launch",
       "type": "docker",
       "request": "launch",
       "preLaunchTask": "docker-run: debug",
       "netCore": {
         "appProject": "${workspaceFolder}/src/Services/Basket/Basket.API/Basket.API.csproj"
+      }
+    },
+    {
+      "name": ".NET Core Launch (web)",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build",
+      "program": "${workspaceFolder}/src/Services/Discount/Discount.GRPC/bin/Debug/net8.0/Discount.GRPC.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/src/Services/Discount/Discount.GRPC",
+      "stopAtEntry": false,
+      "serverReadyAction": {
+        "action": "openExternally",
+        "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
+      },
+      "env": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "sourceFileMap": {
+        "/Views": "${workspaceFolder}/Views"
+      }
+    },
+    {
+      "name": ".NET Core Attach",
+      "type": "coreclr",
+      "request": "attach"
+    },
+    {
+      "name": "Containers: .NET Launch",
+      "type": "docker",
+      "request": "launch",
+      "preLaunchTask": "docker-run: debug",
+      "netCore": {
+        "appProject": "${workspaceFolder}/src/Services/Discount/Discount.GRPC/Discount.GRPC.csproj"
       }
     }
   ]

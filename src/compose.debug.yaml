@@ -24,6 +24,21 @@ services:
       args:
         - configuration=Debug
     ports:
+      - 6001:8080
+      - 6061:8081
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    volumes:
+      - ~/.vsdbg:/remote_debugger:rw
+
+  discountgrpc:
+    image: discountgrpc
+    build:
+      context: .
+      dockerfile: src/Services/Discount/Discount.GRPC/Dockerfile
+      args:
+        - configuration=Debug
+    ports:
       - 5000:5000
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
