@@ -10,11 +10,29 @@
     <ProjectReference Include="../../../BuildingBlocks/BuildingBlocks/BuildingBlocks.csproj" />
   </ItemGroup>
 
+  <!-- Add refeerence to the gRPC service definition, through the proto file. -->
+  <!-- <Link></Link> tag helps to make a virtual copy of the referenced file, so it can be display inside this project solution for reference.  -->
+  <ItemGroup>
+    <Protobuf Include="../../Discount/Discount.GRPC/Protos/discount.proto" GrpcServices="client">
+      <Link>Protos/discount.proto</Link>
+    </Protobuf>
+  </ItemGroup>
+
   <ItemGroup>
     <PackageReference Include="AspNetCore.HealthChecks.NpgSql" Version="9.0.0" />
     <PackageReference Include="AspNetCore.HealthChecks.Redis" Version="9.0.0" />
     <PackageReference Include="AspNetCore.HealthChecks.UI.Client" Version="9.0.0" />
     <PackageReference Include="Carter" Version="8.2.1" />
+
+    <!-- Required for consuming gRPC methods from an external service. -->
+    <PackageReference Include="Grpc.Net.Client" Version="2.71.0" />
+    <PackageReference Include="Grpc.Net.ClientFactory" Version="2.71.0" />
+    <PackageReference Include="Grpc.Tools" Version="2.72.0">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Google.Protobuf" Version="3.32.0" />
+    
     <PackageReference Include="Marten" Version="8.8.2" />
     <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="9.0.8" />
     <PackageReference Include="Scrutor" Version="6.1.0" />

@@ -2,92 +2,22 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "type": "docker-build",
-      "label": "docker-build: debug",
-      "dependsOn": ["build"],
-      "dockerBuild": {
-        "tag": "onlineshoppingapp:dev",
-        "target": "base",
-        "dockerfile": "${workspaceFolder}/src/Services/Basket/Basket.API/Dockerfile",
-        "context": "${workspaceFolder}",
-        "pull": true
-      },
-      "netCore": {
-        "appProject": "${workspaceFolder}/src/Services/Basket/Basket.API/Basket.API.csproj"
-      }
-    },
-    {
-      "type": "docker-build",
-      "label": "docker-build: release",
-      "dependsOn": ["build"],
-      "dockerBuild": {
-        "tag": "onlineshoppingapp:latest",
-        "dockerfile": "${workspaceFolder}/src/Services/Basket/Basket.API/Dockerfile",
-        "context": "${workspaceFolder}",
-        "platform": {
-          "os": "linux",
-          "architecture": "amd64"
-        },
-        "pull": true
-      },
-      "netCore": {
-        "appProject": "${workspaceFolder}/src/Services/Basket/Basket.API/Basket.API.csproj"
-      }
-    },
-    {
-      "type": "docker-run",
-      "label": "docker-run: debug",
-      "dependsOn": ["docker-build: debug"],
-      "dockerRun": {},
-      "netCore": {
-        "appProject": "${workspaceFolder}/src/Services/Basket/Basket.API/Basket.API.csproj",
-        "enableDebugging": true
-      }
-    },
-    {
-      "type": "docker-run",
-      "label": "docker-run: release",
-      "dependsOn": ["docker-build: release"],
-      "dockerRun": {},
-      "netCore": {
-        "appProject": "${workspaceFolder}/src/Services/Basket/Basket.API/Basket.API.csproj"
-      }
-    },
-    {
-      "label": "build",
+      "label": "build-discount.grpc",
       "command": "dotnet",
       "type": "process",
       "args": [
         "build",
-        "${workspaceFolder}/src/OnlineShoppingApp.sln",
-        "/property:GenerateFullPaths=true",
-        "/consoleloggerparameters:NoSummary;ForceNoAlign"
-      ],
-      "problemMatcher": "$msCompile"
+        "${workspaceFolder}/src/Services/Discount/Discount.GRPC/Discount.GRPC.csproj"
+      ]
     },
     {
-      "label": "publish",
+      "label": "build-basket.api",
       "command": "dotnet",
       "type": "process",
       "args": [
-        "publish",
-        "${workspaceFolder}/src/OnlineShoppingApp.sln",
-        "/property:GenerateFullPaths=true",
-        "/consoleloggerparameters:NoSummary;ForceNoAlign"
-      ],
-      "problemMatcher": "$msCompile"
-    },
-    {
-      "label": "watch",
-      "command": "dotnet",
-      "type": "process",
-      "args": [
-        "watch",
-        "run",
-        "--project",
-        "${workspaceFolder}/src/OnlineShoppingApp.sln"
-      ],
-      "problemMatcher": "$msCompile"
+        "build",
+        "${workspaceFolder}/src/Services/Basket/Basket.API/Basket.API.csproj"
+      ]
     }
   ]
 }
