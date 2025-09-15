@@ -1,3 +1,4 @@
+using System.Reflection;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Order.Application;
@@ -11,7 +12,10 @@ public static class DependencyInjection
   /// <returns>Main service configuration received, modified with new dependencies.</returns>
   public static IServiceCollection AddApplicationServices(this IServiceCollection services)
   {
-
+    services.AddMediatR(configuration =>
+    {
+      configuration.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());
+    });
 
     return services;
   } 

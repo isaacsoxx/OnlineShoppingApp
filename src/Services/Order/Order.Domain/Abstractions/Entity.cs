@@ -1,7 +1,7 @@
 namespace Order.Domain.Abstractions;
 
 /// <summary>
-/// Base generic entity class.
+/// Base generic entity class with auditable members.
 /// </summary>
 /// <typeparam name="T">Implementations type variation.</typeparam>
 public abstract class Entity<T> : IEntity<T>

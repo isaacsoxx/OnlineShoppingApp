@@ -15,7 +15,7 @@ public static class DependencyInjection
   }
 
   /// <summary>
-  /// Extension method called after building the application. Will configure api endpoints to the http pipeline .
+  /// Extension method called after adding services to the application. Will configure api endpoints to the http pipeline.
   /// </summary>
   /// <param name="app">Main application state.</param>
   /// <returns>Main application state with configured api endpoints.</returns>
