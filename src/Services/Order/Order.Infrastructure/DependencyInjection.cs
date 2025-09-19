@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Order.Application.Data;
 
 
 namespace Order.Infrastructure;
@@ -25,7 +26,7 @@ public static class DependencyInjection
       options.AddInterceptors(servicesProvider.GetServices<ISaveChangesInterceptor>());
       options.UseSqlServer(connectionString);
     });
-    // ToDo: Register EFCore application db context
+    services.AddScoped<IApplicationDbContext, ApplicationDbContext>();
     return services;
   }
 }

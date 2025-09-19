@@ -51,13 +51,13 @@ public class RootOrder : Aggregate<OrderId>
   /// Updates an existing [RootOrder] aggregate with business domain rules enforced on value objects,
   /// and raises an [OrderUpdatedEvent] to capture the operation as a domain event.
   /// </summary>
-  public void Update(OrderId id, CustomerId customerId, OrderName orderName, Address shippingAddress, Address billingAddress, Payment payment)
+  public void Update(OrderName orderName, Address shippingAddress, Address billingAddress, Payment payment, OrderStatus status)
   {
     OrderName = orderName;
     ShippingAddress = shippingAddress;
     BillingAddress = billingAddress;
     Payment = payment;
-    Status = OrderStatus.Pending;
+    Status = status;
 
     AddDomainEvent(new OrderUpdatedEvent(this));
   }
