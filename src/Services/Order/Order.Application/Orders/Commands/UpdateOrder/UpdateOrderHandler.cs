@@ -5,7 +5,9 @@ public class UpdateOrderHandler(IApplicationDbContext dbContext) : ICommandHandl
   public async Task<UpdateOrderResult> Handle(UpdateOrderCommand command, CancellationToken cancellationToken)
   {
     var orderId = OrderId.Of(command.Order.Id);
-    var order = await dbContext.RootOrders.FindAsync([orderId], cancellationToken);
+        var order = await dbContext.RootOrders
+                .Include(o => o.OrderItems)
+                .FirstOrDefaultAsync(o => o.Id == orderId, cancellationToken);
 
     if (order is null) throw new OrderNotFoundException(command.Order.Id);
 

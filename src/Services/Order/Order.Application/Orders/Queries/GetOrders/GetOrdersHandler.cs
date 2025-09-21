@@ -11,7 +11,7 @@ public class GetOrdersHandler(IApplicationDbContext dbContext) : IQueryHandler<G
     var orders = await dbContext.RootOrders
                   .Include(o => o.OrderItems)
                   .AsNoTracking()
-                  .OrderBy(o => o.OrderName)
+                  .OrderBy(o => o.OrderName.Value)
                   .Skip(pageSize * pageIndex)
                   .Take(pageSize)
                   .ToListAsync(cancellationToken);

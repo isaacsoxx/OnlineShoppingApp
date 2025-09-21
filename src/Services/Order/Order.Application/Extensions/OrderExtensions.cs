@@ -12,7 +12,8 @@ public static class OrderExtensions
         BillingAddress: rootOrder.BillingAddress.ToAddressDto(),
         Payment: rootOrder.Payment.ToPaymentDto(),
         Status: rootOrder.Status,
-        OrderItems: rootOrder.OrderItems.ToOrderItemDtoList()
+        OrderItems: rootOrder.OrderItems.ToOrderItemDtoList(),
+        TotalPrice: rootOrder.TotalPrice
       ));
   }
 

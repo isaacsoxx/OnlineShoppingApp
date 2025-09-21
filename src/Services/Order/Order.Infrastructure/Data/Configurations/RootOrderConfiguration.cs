@@ -45,7 +45,7 @@ public class RootOrderConfiguration : IEntityTypeConfiguration<RootOrder>
 
     builder.ComplexProperty(ro => ro.ShippingAddress, addressBuilder =>
     {
-      /* Defines how business domain rules should be mapped into the DB for the billing address descriptive value object. */
+      /* Defines how business domain rules should be mapped into the DB for the shipping address descriptive value object. */
       addressBuilder.Property(a => a.FirstName)
         .HasMaxLength(50)
         .IsRequired();
@@ -74,7 +74,7 @@ public class RootOrderConfiguration : IEntityTypeConfiguration<RootOrder>
 
     builder.ComplexProperty(ro => ro.BillingAddress, addressBuilder =>
     {
-      /* Defines how business domain rules should be mapped into the DB for the shipping address descriptive value object. */
+      /* Defines how business domain rules should be mapped into the DB for the billing address descriptive value object. */
       addressBuilder.Property(a => a.FirstName)
         .HasMaxLength(50)
         .IsRequired();
