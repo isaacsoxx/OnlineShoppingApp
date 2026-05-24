@@ -1,4 +1,4 @@
-namespace Order.Application.Orders.EventHandlers;
+namespace Order.Application.Orders.EventHandlers.Domain;
 
 /// <summary>
 /// Represents the handler of [OrderCreatedEvent] to run logic after event is triggered.

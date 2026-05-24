@@ -8,7 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 /* Use the defined extension methods to add service per layer. */
 builder.Services
-  .AddApplicationServices()
+  .AddApplicationServices(builder.Configuration)
   .AddInfrastructureServices(builder.Configuration)
   .AddApiServices(builder.Configuration);
 

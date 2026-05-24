@@ -7,10 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="../../../BuildingBlocks/BuildingBlocks.Messaging/BuildingBlocks.Messaging.csproj" />
+    <!-- Add reference to access shared messaging events configurations and extensions. -->
     <ProjectReference Include="../../../BuildingBlocks/BuildingBlocks/BuildingBlocks.csproj" />
   </ItemGroup>
 
-  <!-- Add refeerence to the gRPC service definition, through the proto file. -->
+  <!-- Add reference to the gRPC service definition, through the proto file. -->
   <!-- <Link></Link> tag helps to make a virtual copy of the referenced file, so it can be display inside this project solution for reference.  -->
   <ItemGroup>
     <Protobuf Include="../../Discount/Discount.GRPC/Protos/discount.proto" GrpcServices="client">

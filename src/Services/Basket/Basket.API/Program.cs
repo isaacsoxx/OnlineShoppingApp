@@ -1,4 +1,5 @@
 
+using BuildingBlocks.Messaging.MassTransit;
 using Discount.GRPC;
 using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
@@ -44,6 +45,9 @@ builder.Services.AddGrpcClient<DiscountProtoService.DiscountProtoServiceClient>(
   {
     ServerCertificateCustomValidationCallback = HttpClientHandler.DangerousAcceptAnyServerCertificateValidator
   });
+
+/* Register asynchronous communication services. Setups Masstransit with RabbitMQ. */
+builder.Services.AddMessageBroker(builder.Configuration);
 
 /* Register health checks, validators and exception handlers. */
 builder.Services.AddExceptionHandler<CustomExceptionHandler>();
